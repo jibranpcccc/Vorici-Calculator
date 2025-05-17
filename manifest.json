@@ -1,0 +1,47 @@
+{
+  "name": "Vorici Calculator for Path of Exile",
+  "short_name": "Vorici Calc",
+  "description": "Calculate optimal socket crafting strategies for Path of Exile using the Vorici Calculator",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#ff9c00",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "public/svg/favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 256x256",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Calculator",
+      "url": "/calculator",
+      "description": "Use the Vorici Calculator"
+    },
+    {
+      "name": "Guides",
+      "url": "/guides",
+      "description": "View crafting guides"
+    },
+    {
+      "name": "FAQ",
+      "url": "/faq",
+      "description": "View frequently asked questions"
+    }
+  ],
+  "categories": ["utilities", "games", "tools"],
+  "lang": "en-US",
+  "orientation": "any"
+}

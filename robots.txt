@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vorici-calculator.com/sitemap.xml

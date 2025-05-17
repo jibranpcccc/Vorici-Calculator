@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions About Vorici Crafting - PoE Patch 3.24</title>
+    <meta name="description" content="Explore answers to common questions about Vorici crafting and socket recoloring in Path of Exile, updated for Patch 3.24.">
+    <link rel="canonical" href="https://vorici-calculator.com/faq.html">
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- JSON-LD Structured Data for FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Vorici's Bench in Patch 3.24?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Path of Exile Patch 3.24, Vorici's Bench refers to a crafting station that allows players to modify socket colors on their gear. Named after Vorici, a former master from older PoE versions, this method is now accessed through the main crafting bench in your hideout. The Vorici method offers deterministic socket coloring with fixed costs, unlike the random outcomes of Chromatic Orbs. This is especially valuable for off-color sockets (colors that don't align with the item's attribute requirements)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do Chromatic Orbs work in the latest PoE patch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Path of Exile Patch 3.24, Chromatic Orbs randomize all socket colors on an item. The probability of getting specific colors is influenced by the item's attribute requirements: Higher Strength requirements favor Red sockets, Higher Dexterity requirements favor Green sockets, Higher Intelligence requirements favor Blue sockets. The exact probabilities are calculated based on the attribute requirements. Items with high requirements in a single attribute are very likely to roll that color, making off-colors difficult to obtain through Chromatic Orbs alone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I use the Vorici Calculator effectively?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To use the Vorici Calculator effectively: 1) Enter your item's attribute requirements (STR/DEX/INT), 2) Select the number of sockets on your item, 3) Specify your desired socket colors, 4) Review the calculated crafting methods and costs, 5) Choose the most efficient method based on your available currency and odds. The calculator will show you multiple approaches: pure Chromatic spam, Vorici bench crafting (with guaranteed colors), or hybrid approaches. For items needing multiple off-colors, specialized Vorici bench crafts are often more cost-effective than Chromatic Orbs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are off-color sockets and how are they affected by recent changes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Off-color sockets are socket colors that don't match the primary attribute of an item. For example: Blue sockets on a high-Strength (red) item, Red sockets on a high-Intelligence (blue) item, Green sockets on a high-Intelligence (blue) item. In Patch 3.24, the base probabilities haven't changed significantly, but crafting bench options have been adjusted for better deterministic outcomes. The Vorici calculator accounts for these changes when recommending the most efficient crafting method. Getting multiple off-colors through Chromatic Orbs can be extremely expensive, which is why using targeted crafting methods becomes increasingly important."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the best way to craft RGB sockets in Patch 3.24?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The best approach for RGB sockets in Patch 3.24 depends on your item: For low attribute requirement items: Direct Chromatic Orb usage is often sufficient, as these items have relatively balanced color probabilities. For high attribute requirement items: The Vorici bench offers crafts specifically for tricolor sockets, which will guarantee at least one of each color. For 6-socket items: Consider using the 'at least X' socket crafting method, which guarantees a minimum number of a specific color while leaving the rest random. Our calculator will analyze your specific item requirements and recommend the most efficient method based on current crafting costs."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background-color: var(--secondary-color);
+            margin-bottom: 1rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .success-chart {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Vorici Calculator</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="guides.html">Guides</a>
+                <a href="#" class="active">FAQ</a>
+                <a href="mechanics.html">Mechanics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h1>Frequently Asked Questions About Vorici Crafting (PoE Patch 3.24)</h1>
+                <p>Find answers to the most common questions about using the Vorici Calculator and crafting off-color sockets in Path of Exile.</p>
+            </div>
+
+            <div class="faq-items">
+                <div class="faq-item">
+                    <div class="faq-question">What is Vorici's Bench in Patch 3.24?</div>
+                    <div class="faq-answer">
+                        <p>In Path of Exile Patch 3.24, Vorici's Bench refers to a crafting station that allows players to modify socket colors on their gear. Named after Vorici, a former master from older PoE versions, this method is now accessed through the main crafting bench in your hideout.</p>
+                        <p>The Vorici method offers deterministic socket coloring with fixed costs, unlike the random outcomes of Chromatic Orbs. This is especially valuable for off-color sockets (colors that don't align with the item's attribute requirements).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How do Chromatic Orbs work in the latest PoE patch?</div>
+                    <div class="faq-answer">
+                        <p>In Path of Exile Patch 3.24, Chromatic Orbs randomize all socket colors on an item. The probability of getting specific colors is influenced by the item's attribute requirements:</p>
+                        <ul>
+                            <li>Higher Strength requirements favor Red sockets</li>
+                            <li>Higher Dexterity requirements favor Green sockets</li>
+                            <li>Higher Intelligence requirements favor Blue sockets</li>
+                        </ul>
+                        <p>The exact probabilities are calculated based on the attribute requirements. Items with high requirements in a single attribute are very likely to roll that color, making off-colors difficult to obtain through Chromatic Orbs alone.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How do I use the Vorici Calculator effectively?</div>
+                    <div class="faq-answer">
+                        <p>To use the Vorici Calculator effectively:</p>
+                        <ol>
+                            <li>Enter your item's attribute requirements (STR/DEX/INT)</li>
+                            <li>Select the number of sockets on your item</li>
+                            <li>Specify your desired socket colors</li>
+                            <li>Review the calculated crafting methods and costs</li>
+                            <li>Choose the most efficient method based on your available currency and odds</li>
+                        </ol>
+                        <p>The calculator will show you multiple approaches: pure Chromatic spam, Vorici bench crafting (with guaranteed colors), or hybrid approaches. For items needing multiple off-colors, specialized Vorici bench crafts are often more cost-effective than Chromatic Orbs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What are off-color sockets and how are they affected by recent changes?</div>
+                    <div class="faq-answer">
+                        <p>Off-color sockets are socket colors that don't match the primary attribute of an item. For example:</p>
+                        <ul>
+                            <li>Blue sockets on a high-Strength (red) item</li>
+                            <li>Red sockets on a high-Intelligence (blue) item</li>
+                            <li>Green sockets on a high-Intelligence (blue) item</li>
+                        </ul>
+                        <p>In Patch 3.24, the base probabilities haven't changed significantly, but crafting bench options have been adjusted for better deterministic outcomes. The Vorici calculator accounts for these changes when recommending the most efficient crafting method.</p>
+                        <p>Getting multiple off-colors through Chromatic Orbs can be extremely expensive, which is why using targeted crafting methods becomes increasingly important.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What's the best way to craft RGB sockets in Patch 3.24?</div>
+                    <div class="faq-answer">
+                        <p>The best approach for RGB sockets in Patch 3.24 depends on your item:</p>
+                        <ul>
+                            <li><strong>For low attribute requirement items:</strong> Direct Chromatic Orb usage is often sufficient, as these items have relatively balanced color probabilities.</li>
+                            <li><strong>For high attribute requirement items:</strong> The Vorici bench offers crafts specifically for tricolor sockets, which will guarantee at least one of each color.</li>
+                            <li><strong>For 6-socket items:</strong> Consider using the "at least X" socket crafting method, which guarantees a minimum number of a specific color while leaving the rest random.</li>
+                        </ul>
+                        <p>Our calculator will analyze your specific item requirements and recommend the most efficient method based on current crafting costs.</p>
+                        <p>For many builds, having a proper RGB setup is crucial for optimal gem links, especially for items that naturally favor a single color due to high attribute requirements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How does item quality affect socket coloring?</div>
+                    <div class="faq-answer">
+                        <p>Item quality doesn't directly affect socket coloring probabilities in Path of Exile. Quality affects other aspects of an item:</p>
+                        <ul>
+                            <li>Weapons: Increases physical damage</li>
+                            <li>Armor: Increases armor, evasion, or energy shield values</li>
+                            <li>Flasks: Increases effect duration</li>
+                        </ul>
+                        <p>The only factors that influence socket color probabilities are:</p>
+                        <ul>
+                            <li>The item's Strength, Dexterity, and Intelligence requirements</li>
+                            <li>The specific crafting method used (Chromatic Orbs, crafting bench, etc.)</li>
+                        </ul>
+                        <p>It's always advisable to check your item's attribute requirements before attempting to color sockets, as this will determine how difficult it will be to obtain your desired colors.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can you still use Vorici in the Syndicate for white sockets?</div>
+                    <div class="faq-answer">
+                        <p>Yes, in Patch 3.24, Vorici in the Immortal Syndicate can still create white sockets when placed in the Research safehouse. When you run a Research safehouse with Vorici as a member:</p>
+                        <ul>
+                            <li>Rank 1: Vorici adds 1-2 white sockets to an item</li>
+                            <li>Rank 2: Vorici adds 1-3 white sockets to an item</li>
+                            <li>Rank 3: Vorici adds 1-4 white sockets to an item</li>
+                        </ul>
+                        <p>White sockets can accept gems of any color, making them extremely valuable for gear flexibility. This method is one of the few ways to obtain white sockets in the game, and the outcome is random (both the number of sockets and which sockets are changed).</p>
+                        <p>Our Vorici Calculator doesn't directly account for white sockets, but they're an excellent option if you need maximum flexibility in your socket colors.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="success-chart">
+                <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" aria-labelledby="chart-title chart-desc">
+                    <title id="chart-title">Socket Color Success Rates - PoE Patch 3.24</title>
+                    <desc id="chart-desc">SVG chart showing the success rates for getting specific socket colors based on attribute requirements.</desc>
+                    
+                    <!-- Chart background -->
+                    <rect x="50" y="30" width="500" height="220" fill="#2d2d2d" rx="5" ry="5" />
+                    
+                    <!-- X axis -->
+                    <line x1="50" y1="250" x2="550" y2="250" stroke="#888" stroke-width="2" />
+                    <text x="300" y="280" fill="#ccc" font-size="14" text-anchor="middle">Attribute Requirements</text>
+                    
+                    <!-- Y axis -->
+                    <line x1="50" y1="30" x2="50" y2="250" stroke="#888" stroke-width="2" />
+                    <text x="30" y="140" fill="#ccc" font-size="14" text-anchor="middle" transform="rotate(-90, 30, 140)">Success Probability %</text>
+                    
+                    <!-- Data lines -->
+                    <path d="M50,30 C150,40 250,80 550,220" stroke="#ff5a5a" stroke-width="3" fill="none" />
+                    <path d="M50,125 C250,140 350,200 550,230" stroke="#5aff5a" stroke-width="3" fill="none" />
+                    <path d="M50,220 C150,200 350,100 550,30" stroke="#5a5aff" stroke-width="3" fill="none" />
+                    
+                    <!-- Legend -->
+                    <circle cx="70" cy="290" r="6" fill="#ff5a5a" />
+                    <text x="85" y="295" fill="#ccc" font-size="12">Red Socket</text>
+                    
+                    <circle cx="200" cy="290" r="6" fill="#5aff5a" />
+                    <text x="215" y="295" fill="#ccc" font-size="12">Green Socket</text>
+                    
+                    <circle cx="330" cy="290" r="6" fill="#5a5aff" />
+                    <text x="345" y="295" fill="#ccc" font-size="12">Blue Socket</text>
+                </svg>
+            </div>
+
+            <div class="update-notice">
+                <p>Updated for Path of Exile Patch 3.24. Always verify in-game mechanics for critical crafting decisions.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Vorici Calc. All game content and assets are trademarks of Grinding Gear Games.</p>
+            <p>Site data last updated for Patch 3.24: May 17, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // If the clicked item wasn't active, activate it
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

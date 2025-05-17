@@ -1,0 +1,150 @@
+<homepage> Create a fully responsive homepage for a site called "Vorici Calc" designed for Path of Exile players. The homepage should feature:
+
+    A hero section with the H1: "Vorici Calculator for Off-Color Crafting in PoE - Updated for Patch [Current Patch No.]"
+    A short paragraph explaining what the Vorici Calculator does (include SEO keyword: "Vorici Calculator" at least twice in natural language) and clearly state its relevance to the current Path of Exile patch.
+    An interactive SVG illustration of a Path of Exile crafting bench with colorable sockets (include <title>"Crafting Bench Overview - PoE Patch [Current Patch No.]"</title> and <desc>"SVG representation of Vorici bench with 3 sockets, updated for current PoE patch"</desc>). SVG Source: svg/bench-overview.svg
+    A working HTML/CSS/JS calculator tool embedded directly below the hero section. Full exportable HTML layout for the tool should be injected automatically using <embed src="calculator.html">.
+    Add a CTA button: "Use the Calculator Now (Patch [Current Patch No.] Updated)" (make it visually distinct).
+    Below the calculator, add a prominent note: "Updated for Path of Exile Patch [Current Patch No.]. Calculator data is based on the latest patch. Always double-check in-game for critical crafts."
+    Include three SEO-optimized internal links: to "Guides", "FAQ", and "Mechanics" pages using relevant anchor text (e.g., "Learn Vorici Crafting with our Guides (Patch [Current Patch No.])").
+    Add OBLS to the official PoE crafting page and PoE Wiki (open in new tab with target="_blank" rel="noopener")
+    Use descriptive SVG images throughout (include alt tags and semantic titles reflecting current patch relevance where applicable).
+    Add JSON-LD schema for SoftwareApplication with name, url, operatingSystem, applicationCategory, offers.price = 0, and softwareVersion = "[Current Patch No.]".
+    If applicable, add HowTo schema for a brief section on "How to Use This Calculator".
+    Add meta title: "Vorici Calculator (Patch [Current Patch No.]) - PoE Off-Color Crafting Tool"
+    Add meta description: "Use the Vorici Calculator, updated for PoE Patch [Current Patch No.], to compute chromatic orb crafting chances. Plan your socket colors with precision and save chromatics." </homepage>
+
+<faq> Create a dedicated "FAQ" page for Vorici Calc. The page must:
+
+    Use an H1 tag: "Frequently Asked Questions About Vorici Crafting (PoE Patch [Current Patch No.])"
+    Feature an SVG-based accordion component for each Q&A item with accessible title/desc. SVG Source: svg/faq-toggle.svg
+    Add schema markup using FAQPage in JSON-LD. Ensure questions and answers reflect current patch information.
+    Include 7+ Q&A entries like:
+        "What is Vorici's Bench in Patch [Current Patch No.]?"
+        "How do Chromatic Orbs work in the latest PoE patch?"
+        "How do I use the Vorici Calculator effectively?"
+        "What are off-color sockets and how are they affected by recent changes?"
+        "What's the best way to craft RGB sockets in Patch [Current Patch No.]?"
+    Include internal links to: /guides, /mechanics, and /calculator with contextual anchor text (e.g., "See our detailed Mechanics guide for Patch [Current Patch No.]").
+    Add one outbound link (OBL) to the PoE subreddit or a trusted community forum for current patch discussions (target="_blank" rel="noopener")
+    Include at least one SVG chart to show crafting success rates visually, labeled as relevant for Patch [Current Patch No.]. SVG Source: svg/success-chart.svg
+    Add meta title: "Vorici Crafting FAQ (Patch [Current Patch No.]) - Get Help Using the Calculator"
+    Add meta description: "Explore answers to common questions about Vorici crafting and socket recoloring in Path of Exile, updated for Patch [Current Patch No.]." </faq>
+
+<guides> Build a "Guides" page with multiple SEO-optimized posts. The layout should:
+
+    Use the H1: "Guides for Crafting Off-Color Sockets Using Vorici (Updated for Patch [Current Patch No.])"
+    Display blog post previews with SVG thumbnails (e.g. socket diagrams) that include proper alt tags and semantic titles/desc. SVG Source: svg/guide-preview-[n].svg
+    Add at least 3 featured articles, ensuring content is current:
+        "Step-by-Step: Using the Vorici Calculator for 6-Link Items in Patch [Current Patch No.]"
+        "How Off-Color Sockets Save You Chromatics in the Long Run (Patch [Current Patch No.] Insights)"
+        "Mastering Vorici Bench Crafting in Patch [Current Patch No.]"
+    Each post must include:
+        Optimized H2s and H3s with keywords relevant to the current patch.
+        Author name and a brief bio (e.g., "[Author Name], a Path of Exile veteran with X years of crafting experience, specializing in [area]."). Link to a dedicated author profile page if available.
+        Prominently displayed publish and last updated dates (ensure dateModified reflects patch updates).
+        At least one custom SVG diagram with <title> and <desc>, relevant to the guide's content.
+        Consider embedding a relevant, high-quality video tutorial (yours or curated with attribution) with VideoObject schema and transcript.
+        OBLS to Path of Exile forums, official patch notes, or trusted YouTube crafting guides relevant to the current patch.
+        Internal links to /faq and /mechanics, referencing current patch information.
+        JSON-LD Article schema: headline, image, datePublished, dateModified, author (with @type": "Person", "name": "[Author Name]", "description": "[Author Bio]"), publisher, wordCount, timeRequired`.
+            Publisher must be defined as:
+            json
+
+            "publisher": {
+              "@type": "Organization",
+              "name": "Vorici Calc",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://your-domain.com/svg/favicon.svg"
+              }
+            }
+
+    Add meta title: "Vorici Guides (Patch [Current Patch No.] ) - Step-by-Step Socket Crafting Tutorials"
+    Add meta description: "Learn how to use the Vorici Calculator to craft off-color sockets in PoE with our expert guides, updated for Patch [Current Patch No.]." </guides>
+
+<mechanics> Generate a glossary-style "Mechanics" page that explains crafting concepts, updated for Patch [Current Patch No.]. The page should:
+
+    Use the H1: "Crafting Mechanics Behind Vorici Socket Coloring (PoE Patch [Current Patch No.])"
+    Include short definitions for:
+        Chromatic Orbs (current patch behavior)
+        Socket Color Influence (mention that higher attribute items make off-color sockets harder to roll, current patch context)
+        Strength/Dex/Int requirements (current patch context)
+        Off-color sockets (current patch context)
+    Use animated interactive SVGs that respond to hover and include <title> and <desc>. SVG Source: svg/socket-math.svg
+    Add internal links to /faq and /guides with keyword-focused anchor text (e.g., "Read our FAQ for Patch [Current Patch No.]").
+    Include outbound link to PoE Wiki’s mechanics page (target="_blank" rel="noopener") if it's updated, or another trusted, current source.
+    Add meta title: "Vorici Crafting Mechanics (Patch [Current Patch No.]) - PoE Socket Color Math"
+    Add meta description: "Understand how socket colors, item stats, and Vorici’s bench interact to influence crafting outcomes in PoE Patch [Current Patch No.]." </mechanics>
+
+<blog> Create a "Blog" page with PoE-focused posts, emphasizing current patch relevance. The layout must:
+
+    Use the H1: "Vorici Crafting Blog - Updates, Tips & Patch [Current Patch No.] News"
+    Display blog cards with inline SVG thumbnails related to crafting tools (each with alt text, <title>, and <desc>). SVG Source: svg/blog-[slug].svg
+    Add at least 3 articles, focusing on current topics:
+        "5 Mistakes to Avoid When Using Vorici Bench in Patch [Current Patch No.]"
+        "Vorici vs Alva: Best Bench for RGB Sockets in the Current Meta?"
+        "How PoE Patch [Current Patch No.] Affects Chromatic Orb Costs & Strategies"
+    Every blog post must:
+        Include author name, brief bio, and link to author profile if available. Prominently display publish and last updated dates.
+        Include internal links to the calculator tool page with call-to-action anchor text (e.g., "Try the Updated Vorici Calculator for Patch [Current Patch No.]").
+        Include OBLS to official patch notes or relevant, current YouTube videos/community discussions (target="_blank" rel="noopener").
+        Include at least one custom SVG chart or visual with full accessibility metadata, relevant to the post.
+        Consider embedding a relevant video with VideoObject schema and transcript.
+        Add JSON-LD Article schema with headline, image, author (with bio), datePublished, dateModified, publisher, wordCount, timeRequired.
+            Publisher should follow this structure:
+            json
+
+            "publisher": {
+              "@type": "Organization",
+              "name": "Vorici Calc",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://your-domain.com/svg/favicon.svg"
+              }
+            }
+
+    Add meta title: "Vorici Crafting Blog (Patch [Current Patch No.] ) - Path of Exile Strategies"
+    Add meta description: "Stay ahead with our PoE crafting blog. Learn expert Vorici socketing tactics and insights for Patch [Current Patch No.]." </blog>
+
+<video_gallery>
+Create a "Video Guides" page for Vorici Calc, focusing on content relevant to Patch [Current Patch No.].
+
+    H1: "Path of Exile Crafting Video Guides (Patch [Current Patch No.] Focus)"
+    Content: Embed a curated collection of high-quality video tutorials on Vorici crafting, off-color socketing, and related PoE mechanics. Prioritize videos relevant to the current patch.
+        For each video, include a brief description, author/channel attribution, and publish date.
+        If embedding external videos, use rel="nofollow noopener" where appropriate.
+    Schema: For each embedded video, ensure VideoObject schema markup is included (title, description, thumbnailUrl, uploadDate, duration, publisher/provider).
+    Internal Links: Link to relevant text guides, calculator, and FAQ pages.
+    Meta Title: "PoE Crafting Video Guides (Patch [Current Patch No.]) - Vorici Calc"
+    Meta Description: "Watch expert video tutorials on Vorici crafting, socket coloring, and more for Path of Exile Patch [Current Patch No.]." </video_gallery>
+
+<about_us_page>
+Create an "About Us" page for Vorici Calc.
+
+    H1: "About Vorici Calc: Passionate PoE Crafters Helping You Master Patch [Current Patch No.]"
+    Content: Explain the mission of the site. Detail the creator's (or team's) extensive experience with Path of Exile, specific expertise in crafting, and commitment to providing accurate, up-to-date tools and information for the current patch. Make it personal and relatable to build trust.
+    Visual: An SVG icon representing community or expertise. SVG Source: svg/about-icon.svg
+    Internal Links: Link to Homepage, Guides, FAQ.
+    OBL: Optional link to PoE forum profile or relevant community presence if applicable.
+    Meta Title: "About Vorici Calc - Our PoE Crafting Mission (Patch [Current Patch No.])"
+    Meta Description: "Learn about the team and passion behind Vorici Calc, dedicated to helping Path of Exile players master off-color socket crafting in Patch [Current Patch No.]." </about_us_page>
+
+<contact_page>
+Create a "Contact Us" page.
+
+    H1: "Get in Touch - Vorici Calc Feedback & Support"
+    Content: Provide an email or Discord invite for contact. Simple static form optional.
+    Visual: An SVG mail icon. SVG Source: svg/contact-mail.svg
+    Meta Title: "Contact Vorici Calc - PoE Crafting Tool Support"
+    Meta Description: "Have questions or feedback about the Vorici Calculator? Contact us here." </contact_page>
+
+<legal_pages>
+Create placeholder "Privacy Policy" and "Terms of Use" pages.
+
+    H1s: "Privacy Policy" and "Terms of Use" respectively.
+    Content: Boilerplate explaining no user data is stored (or localStorage only), for informational use.
+    Internal Links: Linked from footer.
+    Meta Titles/Descriptions: Standard compliance SEO setup. </legal_pages>
+
+<global> - **Patch Information:** Prominently display "Updated for Path of Exile Patch [Current Patch No.]" across the site, especially on the homepage, calculator, and guide pages. - Use a consistent dark-mode color scheme across all pages. - All SVGs must include <title>, <desc>, and accessible markup per WCAG 2.1. Ensure titles and descriptions are specific and keyword-rich where appropriate (e.g., "Vorici Calculator Diagram Patch [Current Patch No.]"). - Add aria-hidden="true" for decorative SVGs; interactive ones must include role attributes (e.g., role="img", role="button") and keyboard access. - Every page must include at least one visual element (SVG or styled image). - **Internal link structure:** - Homepage links to /faq, /guides, /mechanics, /blog, /video_gallery (if implemented). - Every inner page links back to / and cross-links to at least 2 other relevant sections using contextual, SEO-rich anchor text (e.g., "Check our Patch [Current Patch No.] FAQ"). - **OBLS (outbound backlinks) policy:** - Max 2-3 per page where highly relevant and valuable. - All open in new tab (`target="_blank" rel="noopener"`). - Trusted, up-to-date PoE resources only (wiki, forums, subreddit, official patches, reputable content creators). - **Performance & Mobile Usability:** - Fully mobile responsive layout. Ensure all interactive elements (calculator, SVGs) are flawlessly functional and easy to use on mobile. - Ensure efficient CSS/JS, optimized SVGs, and consider lazy loading for any non-critical images/media below the fold to optimize for fast loading speeds. - Sticky nav bar and footer including: - Links to /about, /contact, /privacy-policy, /terms-of-use. - Copyright © [Year] Vorici Calc. - Prominently display "Site data last updated for Patch [Current Patch No.]: [Date]" - Sitemap: generate sitemap.xml referencing all pages including homepage, inner pages, blog posts, guides, video gallery, about, contact, legal. - robots.txt: Allow all, reference sitemap URL. - Open Graph and Twitter Card meta tags for all pages (og:title, og:description, og:image, twitter:title, etc.). Ensure these also reflect current patch relevance. - Default og:image: simplified static SVG from crafting bench, potentially with a "Patch [Current Patch No.]" overlay. - Favicon: Include .ico and SVG versions representing a socket or orb icon. - Bundle the following assets with export: - `calculator.html` - SVG files: `bench-overview.svg`, `faq-toggle.svg`, `success-chart.svg`, `guide-preview-1.svg`, `guide-preview-2.svg`, `guide-preview-3.svg`, `socket-math.svg`, `blog-mistakes.svg`, `blog-vs.svg`, `blog-patch.svg`, `about-icon.svg`, `contact-mail.svg`, `favicon.svg` </global> ```

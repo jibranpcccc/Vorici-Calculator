@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorici Calculator (Patch 3.24) - PoE Off-Color Crafting Tool</title>
+    <meta name="description" content="Use the Vorici Calculator, updated for PoE Patch 3.24, to compute chromatic orb crafting chances. Plan your socket colors with precision and save chromatics.">
+    <meta name="author" content="Vorici Calc Team">
+    <meta name="robots" content="index, follow">
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta property="og:title" content="Vorici Calculator (Patch 3.24) - PoE Off-Color Crafting Tool">
+    <meta property="og:description" content="Calculate chromatic orb crafting chances for Path of Exile. Updated for Patch 3.24.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vorici-calculator.com/">
+    <meta property="og:image" content="https://vorici-calculator.com/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vorici Calculator (Patch 3.24) - PoE Off-Color Crafting Tool">
+    <meta name="twitter:description" content="Calculate chromatic orb crafting chances for Path of Exile. Updated for Patch 3.24.">
+    <meta name="twitter:image" content="https://vorici-calculator.com/images/twitter-card.jpg">
+    <link rel="canonical" href="https://vorici-calculator.com/">
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="preload" href="script.min.js" as="script">
+    <link rel="preload" href="favicon.svg" as="image">
+    <link rel="stylesheet" href="styles.min.css">
+    
+    <!-- JSON-LD Structured Data for SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Vorici Calculator",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "softwareVersion": "3.24",
+      "description": "A calculator tool for Path of Exile that helps players determine the optimal way to craft socket colors using Chromatic Orbs and the Vorici bench.",
+      "url": "https://vorici-calculator.com",
+      "datePublished": "2025-05-17",
+      "dateModified": "2025-05-17"
+    }
+    </script>
+    
+    <!-- JSON-LD Structured Data for HowTo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Use the Vorici Calculator",
+      "description": "Step-by-step guide on using the Vorici Calculator for Path of Exile socket color crafting.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Enter Item Attributes",
+          "text": "Input your item's strength, dexterity, and intelligence requirements."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Select Socket Configuration", 
+          "text": "Choose how many sockets of each color you need."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Calculate Results", 
+          "text": "Click the calculate button to see the optimal crafting method and expected costs."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Apply In-Game", 
+          "text": "Use the recommended method to craft your gear in Path of Exile."
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Vorici Calculator for Off-Color Crafting in PoE - Patch 3.24</h1>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="guides.html">Guides</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mechanics.html">Mechanics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Plan Your Perfect Socket Colors</h2>
+            <p>Calculate the most efficient way to get your desired socket colors with the Vorici Calculator, updated for Path of Exile Patch 3.24.</p>
+            <a href="#calculator-section" class="cta-button">Use the Calculator Now (Patch 3.24 Updated)</a>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Easy to Use</h3>
+                <p>Simple interface for quick calculations</p>
+            </div>
+            <div class="feature">
+                <h3>Accurate Results</h3>
+                <p>Based on the latest PoE mechanics</p>
+            </div>
+            <div class="feature">
+                <h3>Mobile Friendly</h3>
+                <p>Works on all devices</p>
+            </div>
+        </section>
+
+        <!-- Interactive Socket Crafting SVG Illustration -->
+        <section class="interactive-svg-section">
+            <h2>Vorici Crafting Bench</h2>
+            <div class="svg-container">
+                <svg id="crafting-bench" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" aria-labelledby="bench-title bench-desc">
+                    <title id="bench-title">Crafting Bench Overview - PoE Patch 3.24</title>
+                    <desc id="bench-desc">SVG representation of Vorici bench with 6 sockets, updated for current PoE patch</desc>
+                    
+                    <!-- Bench surface -->
+                    <rect id="bench-surface" x="100" y="250" width="400" height="50" fill="#553311" stroke="#775533" stroke-width="3" />
+                    <rect x="140" y="300" width="320" height="60" fill="#553311" stroke="#775533" stroke-width="3" />
+                    
+                    <!-- Item on bench -->
+                    <rect id="item-base" x="200" y="150" width="200" height="100" rx="5" ry="5" fill="#444" stroke="#666" stroke-width="3" />
+                    
+                    <!-- Sockets - these will be interactive -->
+                    <g id="sockets">
+                        <circle id="socket1" cx="230" cy="180" r="15" class="socket" data-color="red" fill="#ff5a5a" stroke="#444" stroke-width="2" />
+                        <circle id="socket2" cx="280" cy="180" r="15" class="socket" data-color="green" fill="#5aff5a" stroke="#444" stroke-width="2" />
+                        <circle id="socket3" cx="330" cy="180" r="15" class="socket" data-color="blue" fill="#5a5aff" stroke="#444" stroke-width="2" />
+                        <circle id="socket4" cx="230" cy="220" r="15" class="socket" data-color="blue" fill="#5a5aff" stroke="#444" stroke-width="2" />
+                        <circle id="socket5" cx="280" cy="220" r="15" class="socket" data-color="blue" fill="#5a5aff" stroke="#444" stroke-width="2" />
+                        <circle id="socket6" cx="330" cy="220" r="15" class="socket" data-color="red" fill="#ff5a5a" stroke="#444" stroke-width="2" />
+                    </g>
+                    
+                    <!-- Links between sockets -->
+                    <g id="links" stroke="#aaa" stroke-width="3">
+                        <line x1="245" y1="180" x2="265" y2="180" />
+                        <line x1="295" y1="180" x2="315" y2="180" />
+                        <line x1="230" y1="195" x2="230" y2="205" />
+                        <line x1="280" y1="195" x2="280" y2="205" />
+                        <line x1="330" y1="195" x2="330" y2="205" />
+                        <line x1="245" y1="220" x2="265" y2="220" />
+                        <line x1="295" y1="220" x2="315" y2="220" />
+                    </g>
+                    
+                    <!-- Orbs floating above -->
+                    <circle id="orb1" cx="150" cy="100" r="20" fill="#ff5a5a" stroke="#fff" stroke-width="1" opacity="0.8">
+                        <animate attributeName="cy" values="100;90;100" dur="3s" repeatCount="indefinite" />
+                    </circle>
+                    <circle id="orb2" cx="450" cy="100" r="20" fill="#5aff5a" stroke="#fff" stroke-width="1" opacity="0.8">
+                        <animate attributeName="cy" values="100;110;100" dur="2.5s" repeatCount="indefinite" />
+                    </circle>
+                    
+                    <!-- Glow effect -->
+                    <circle id="glow" cx="300" cy="200" r="120" fill="none" stroke="#ff9c00" stroke-width="1" stroke-dasharray="5,5" opacity="0.5">
+                        <animate attributeName="r" values="120;130;120" dur="4s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.5;0.8;0.5" dur="4s" repeatCount="indefinite" />
+                    </circle>
+                </svg>
+            </div>
+            <div class="svg-controls">
+                <p>Click on a socket to change its color. Try creating your ideal socket combination!</p>
+                <div class="color-buttons">
+                    <button id="red-btn" class="color-btn red-btn">Red Socket</button>
+                    <button id="green-btn" class="color-btn green-btn">Green Socket</button>
+                    <button id="blue-btn" class="color-btn blue-btn">Blue Socket</button>
+                    <button id="white-btn" class="color-btn white-btn">White Socket</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section id="calculator-section" class="calculator-section">
+            <h2>Vorici Socket Color Calculator</h2>
+            <p class="calculator-intro">Calculate the most efficient way to get your desired socket colors in Path of Exile Patch 3.24</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="item-type">Item Type:</label>
+                        <select id="item-type" class="form-control">
+                            <option value="armor">Body Armor</option>
+                            <option value="weapon">Weapon</option>
+                            <option value="helmet">Helmet</option>
+                            <option value="gloves">Gloves</option>
+                            <option value="boots">Boots</option>
+                            <option value="shield">Shield</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total-sockets">Total Sockets:</label>
+                        <select id="total-sockets" class="form-control">
+                            <option value="1">1 Socket</option>
+                            <option value="2">2 Sockets</option>
+                            <option value="3">3 Sockets</option>
+                            <option value="4">4 Sockets</option>
+                            <option value="5">5 Sockets</option>
+                            <option value="6" selected>6 Sockets</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Item Attributes:</label>
+                        <div class="attribute-inputs">
+                            <div>
+                                <label for="strength">Strength</label>
+                                <input type="number" id="strength" class="form-control" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="dexterity">Dexterity</label>
+                                <input type="number" id="dexterity" class="form-control" min="0" value="0">
+                            </div>
+                            <div>
+                                <label for="intelligence">Intelligence</label>
+                                <input type="number" id="intelligence" class="form-control" min="0" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Desired Socket Colors:</label>
+                        <div class="desired-colors-container">
+                            <div class="socket-inputs">
+                                <input type="number" id="desired-red" class="form-control socket-input" min="0" max="6" value="0" placeholder="R">
+                                <span>Red</span>
+                            </div>
+                            <div class="socket-inputs">
+                                <input type="number" id="desired-green" class="form-control socket-input" min="0" max="6" value="0" placeholder="G">
+                                <span>Green</span>
+                            </div>
+                            <div class="socket-inputs">
+                                <input type="number" id="desired-blue" class="form-control socket-input" min="0" max="6" value="0" placeholder="B">
+                                <span>Blue</span>
+                            </div>
+                            <div class="socket-inputs">
+                                <input type="number" id="desired-white" class="form-control socket-input" min="0" max="6" value="0" placeholder="W">
+                                <span>White</span>
+                            </div>
+                        </div>
+                        <div class="socket-preview" id="socket-preview">
+                            <div class="preview-title">Preview:</div>
+                            <div class="preview-sockets" id="preview-sockets"></div>
+                        </div>
+                    </div>
+
+                    <button id="calculate-btn" class="cta-button" style="width: 100%;">
+                        Calculate Best Method
+                    </button>
+
+                    <div id="results" class="results">
+                        <h3>Optimal Crafting Method</h3>
+                        <div class="result-item">
+                            <span class="result-label">Recommended Method:</span>
+                            <span class="result-value" id="method">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Average Cost:</span>
+                            <span class="result-value" id="cost">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Success Rate:</span>
+                            <span class="result-value" id="success-rate">-</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Chromatic Orbs Needed:</span>
+                            <span class="result-value" id="chromatics">-</span>
+                        </div>
+                        <div class="result-details" id="result-details">
+                            <!-- Additional details will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="update-notice">
+            <p>Updated for Path of Exile Patch 3.24. Calculator data is based on the latest patch. Always double-check in-game for critical crafts.</p>
+        </div>
+
+        <!-- Related Links Section with improved SEO and interlinking -->
+        <section class="related-links-section">
+            <h2>Explore More Vorici Crafting Resources</h2>
+            <div class="related-links">
+                <div class="related-link">
+                    <h3><a href="guides.html">Detailed Crafting Guides</a></h3>
+                    <p>Learn Vorici Crafting with our step-by-step guides for Patch 3.24. Perfect for beginners and advanced crafters.</p>
+                </div>
+                <div class="related-link">
+                    <h3><a href="faq.html">Frequently Asked Questions</a></h3>
+                    <p>Get answers to common questions about Vorici crafting methods and strategies in the latest patch.</p>
+                </div>
+                <div class="related-link">
+                    <h3><a href="mechanics.html">Socket Coloring Mechanics</a></h3>
+                    <p>Understand how socket color probabilities work and make better crafting decisions in PoE Patch 3.24.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <a href="about.html">About Us</a> | 
+                <a href="contact.html">Contact</a> | 
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Use</a>
+            </div>
+            <p>&copy; 2025 Vorici Calc. All game content and assets are trademarks of Grinding Gear Games.</p>
+            <p>Site data last updated for Patch 3.24: May 17, 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.min.js" defer></script>
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

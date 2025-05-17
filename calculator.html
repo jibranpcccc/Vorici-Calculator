@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorici Calculator - Socket Color Calculator for PoE - Patch 3.24</title>
+    <meta name="description" content="Calculate the most efficient way to get your desired socket colors with the Vorici Calculator for Path of Exile. Updated for Patch 3.24">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .calculator-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-header h1 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .calculator-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #444;
+            border-radius: var(--border-radius);
+            background-color: #333;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .socket-selection {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .socket-option {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .socket-option:hover {
+            background-color: #3a3a3a;
+        }
+
+        .socket-option.active {
+            border-color: var(--accent-color);
+            background-color: rgba(255, 156, 0, 0.1);
+        }
+
+        .socket-option svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        .results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: var(--border-radius);
+            display: none;
+        }
+
+        .results h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #444;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .result-label {
+            font-weight: bold;
+        }
+
+        .result-value {
+            text-align: right;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Vorici Calculator</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="#" class="active">Calculator</a>
+                <a href="guides.html">Guides</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mechanics.html">Mechanics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h1>Vorici Socket Color Calculator</h1>
+                <p>Calculate the most efficient way to get your desired socket colors in Path of Exile</p>
+            </div>
+
+            <div class="calculator-form">
+                <div class="form-group">
+                    <label for="item-type">Item Type:</label>
+                    <select id="item-type" class="form-control">
+                        <option value="armor">Armor</option>
+                        <option value="weapon">Weapon</option>
+                        <option value="jewelry">Jewelry</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="item-level">Item Level:</label>
+                    <input type="number" id="item-level" class="form-control" min="1" max="100" value="84">
+                </div>
+
+                <div class="form-group">
+                    <label>Item Attributes:</label>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                        <div>
+                            <label for="strength">Strength</label>
+                            <input type="number" id="strength" class="form-control" min="0" value="0">
+                        </div>
+                        <div>
+                            <label for="dexterity">Dexterity</label>
+                            <input type="number" id="dexterity" class="form-control" min="0" value="0">
+                        </div>
+                        <div>
+                            <label for="intelligence">Intelligence</label>
+                            <input type="number" id="intelligence" class="form-control" min="0" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Socket Colors (click to select):</label>
+                    <div class="socket-selection">
+                        <div class="socket-option" data-color="red">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="#ff5a5a" />
+                            </svg>
+                            <div>Red</div>
+                        </div>
+                        <div class="socket-option" data-color="green">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="#5aff5a" />
+                            </svg>
+                            <div>Green</div>
+                        </div>
+                        <div class="socket-option" data-color="blue">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="#5a5aff" />
+                            </svg>
+                            <div>Blue</div>
+                        </div>
+                        <div class="socket-option" data-color="white">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="#ffffff" stroke="#ccc" stroke-width="1" />
+                            </svg>
+                            <div>White</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="desired-colors">Desired Socket Colors (e.g., RRGBBG):</label>
+                    <input type="text" id="desired-colors" class="form-control" placeholder="Enter R (Red), G (Green), B (Blue)">
+                </div>
+
+                <button id="calculate-btn" class="cta-button" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                    Calculate Best Method
+                </button>
+
+                <div id="results" class="results">
+                    <h3>Optimal Crafting Method</h3>
+                    <div class="result-item">
+                        <span class="result-label">Recommended Method:</span>
+                        <span class="result-value" id="method">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Average Cost:</span>
+                        <span class="result-value" id="cost">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Success Rate:</span>
+                        <span class="result-value" id="success-rate">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Chromatic Orbs Needed:</span>
+                        <span class="result-value" id="chromatics">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="update-notice">
+            <p>Updated for Path of Exile Patch 3.24. Calculator data is based on the latest patch. Always double-check in-game for critical crafts.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Vorici Calc. All game content and assets are trademarks of Grinding Gear Games.</p>
+            <p>Site data last updated for Patch 3.24: May 17, 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Socket selection
+        document.querySelectorAll('.socket-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const color = this.getAttribute('data-color');
+                const input = document.getElementById('desired-colors');
+                input.value += color.charAt(0).toUpperCase();
+            });
+        });
+
+        // Calculate button
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const desiredColors = document.getElementById('desired-colors').value;
+            
+            if (!desiredColors) {
+                alert('Please enter your desired socket colors');
+                return;
+            }
+
+
+            // Sample calculation (simplified for demo)
+            const results = calculateOptimalMethod(desiredColors);
+            
+            // Display results
+            document.getElementById('method').textContent = results.method;
+            document.getElementById('cost').textContent = results.cost;
+            document.getElementById('success-rate').textContent = results.successRate;
+            document.getElementById('chromatics').textContent = results.chromatics;
+            
+            document.getElementById('results').style.display = 'block';
+        });
+
+        // Sample calculation function (simplified)
+        function calculateOptimalMethod(desiredColors) {
+            // This is a simplified example - actual calculation would be more complex
+            const methods = [
+                { name: 'Chromatic Orbs', cost: 'Medium', success: 'Variable', chromatics: Math.ceil(desiredColors.length * 7.5) },
+                { name: 'Vorici 3S', cost: 'Low', success: 'Guaranteed', chromatics: 120 },
+                { name: 'Vorici 4S', cost: 'High', success: 'Guaranteed', chromatics: 250 }
+            ];
+
+            // Simple logic to determine best method based on input length
+            let bestMethod;
+            if (desiredColors.length <= 2) {
+                bestMethod = methods[0]; // Chromatic Orbs for 1-2 sockets
+            } else if (desiredColors.length === 3) {
+                bestMethod = methods[1]; // Vorici 3S for 3 sockets
+            } else {
+                bestMethod = methods[2]; // Vorici 4S for 4+ sockets
+            }
+
+            return {
+                method: bestMethod.name,
+                cost: bestMethod.cost,
+                successRate: bestMethod.success,
+                chromatics: bestMethod.chromatics
+            };
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorici Crafting Mechanics - PoE Socket Color Math - Patch 3.24</title>
+    <meta name="description" content="Understand how socket colors, item stats, and Vorici's bench interact to influence crafting outcomes in PoE Patch 3.24.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .mechanics-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .mechanics-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .mechanics-section {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+        }
+
+        .mechanics-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #444;
+            padding-bottom: 0.5rem;
+        }
+
+        .mechanic-item {
+            margin-bottom: 2rem;
+        }
+
+        .mechanic-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .mechanic-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .formula {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-family: monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .socket-display {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .socket {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .socket.red {
+            background-color: #ff5a5a;
+        }
+
+        .socket.green {
+            background-color: #5aff5a;
+        }
+
+        .socket.blue {
+            background-color: #5a5aff;
+        }
+
+        .socket.white {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .socket:hover {
+            transform: scale(1.1);
+        }
+
+        .socket-math {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            display: block;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        
+        th {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: var(--accent-color);
+        }
+        
+        tr:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Vorici Calculator</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="guides.html">Guides</a>
+                <a href="faq.html">FAQ</a>
+                <a href="#" class="active">Mechanics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="mechanics-container">
+            <div class="mechanics-header">
+                <h1>Crafting Mechanics Behind Vorici Socket Coloring (PoE Patch 3.24)</h1>
+                <p>Understanding the math and mechanics behind socket coloring will help you make better crafting decisions.</p>
+            </div>
+
+            <div class="mechanics-section">
+                <h2>Socket Color Fundamentals</h2>
+                
+                <div class="mechanic-item">
+                    <div class="mechanic-title">Chromatic Orbs</div>
+                    <p>Chromatic Orbs randomize all socket colors on an item. In Patch 3.24, they follow specific probability distributions based on the item's attribute requirements:</p>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Socket Color</th>
+                                    <th>Associated Attribute</th>
+                                    <th>Color Representation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Red</td>
+                                    <td>Strength (STR)</td>
+                                    <td>
+                                        <div class="socket red">R</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Green</td>
+                                    <td>Dexterity (DEX)</td>
+                                    <td>
+                                        <div class="socket green">G</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Blue</td>
+                                    <td>Intelligence (INT)</td>
+                                    <td>
+                                        <div class="socket blue">B</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>White</td>
+                                    <td>None (Special)</td>
+                                    <td>
+                                        <div class="socket white">W</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="mechanic-item">
+                    <div class="mechanic-title">Socket Color Influence</div>
+                    <p>Higher attribute requirements make it more likely for sockets to roll the corresponding color. In Patch 3.24, socket color probability is calculated using this formula:</p>
+                    
+                    <div class="formula">
+                        probability(color) = (related_attribute + 20) / (sum_of_all_attributes + 60)
+                    </div>
+                    
+                    <p>For example, for an item with 100 STR, 50 DEX, and 0 INT requirements:</p>
+                    <div class="formula">
+                        probability(red) = (100 + 20) / (100 + 50 + 0 + 60) = 120 / 210 = 57.1%<br>
+                        probability(green) = (50 + 20) / (100 + 50 + 0 + 60) = 70 / 210 = 33.3%<br>
+                        probability(blue) = (0 + 20) / (100 + 50 + 0 + 60) = 20 / 210 = 9.5%
+                    </div>
+                    
+                    <p>This explains why getting "off-color" sockets (colors not matching the main attribute of the item) can be extremely difficult and expensive.</p>
+                </div>
+            </div>
+
+            <div class="mechanics-section">
+                <h2>Attribute Requirements</h2>
+                
+                <div class="mechanic-item">
+                    <div class="mechanic-title">Strength/Dex/Int Requirements</div>
+                    <p>Every equipment piece in Path of Exile has attribute requirements that influence socket coloring:</p>
+                    
+                    <ul>
+                        <li><strong>Pure STR items</strong> (e.g., Astral Plate): Heavily favor red sockets</li>
+                        <li><strong>Pure DEX items</strong> (e.g., Zodiac Leather): Heavily favor green sockets</li>
+                        <li><strong>Pure INT items</strong> (e.g., Vaal Regalia): Heavily favor blue sockets</li>
+                        <li><strong>Hybrid items</strong> (e.g., STR/INT Armor): Have mixed socket color tendencies</li>
+                    </ul>
+                    
+                    <p>In Patch 3.24, the higher the attribute requirement, the stronger its influence on socket color probabilities, making off-color sockets increasingly difficult to obtain.</p>
+                </div>
+            </div>
+
+            <div class="mechanics-section">
+                <h2>Off-Color Sockets</h2>
+                
+                <div class="mechanic-item">
+                    <div class="mechanic-title">What Are Off-Color Sockets?</div>
+                    <p>Off-color sockets are socket colors that don't correspond to the primary attribute requirement of the item:</p>
+                    
+                    <ul>
+                        <li>Blue sockets on STR items</li>
+                        <li>Red sockets on INT items</li>
+                        <li>Green sockets on INT items</li>
+                        <li>Any specific combination that doesn't align with the item's attributes</li>
+                    </ul>
+                    
+                    <p>The higher the primary attribute requirement and the more off-color sockets needed, the exponentially more expensive it becomes to craft with Chromatic Orbs.</p>
+                </div>
+                
+                <div class="mechanic-item">
+                    <div class="mechanic-title">Crafting Methods Comparison</div>
+                    <p>In Patch 3.24, there are multiple ways to get off-color sockets:</p>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Pros</th>
+                                    <th>Cons</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Chromatic Orbs</td>
+                                    <td>Simple to use, no special requirements</td>
+                                    <td>Randomized outcome, potentially very expensive for multiple off-colors</td>
+                                </tr>
+                                <tr>
+                                    <td>Crafting Bench (Specific Colors)</td>
+                                    <td>Guaranteed outcome, predictable cost</td>
+                                    <td>Higher fixed cost, limited availability of some recipes</td>
+                                </tr>
+                                <tr>
+                                    <td>Vorici in Syndicate</td>
+                                    <td>Can create white sockets (universal)</td>
+                                    <td>Random socket selection, requires specific Syndicate setup</td>
+                                </tr>
+                                <tr>
+                                    <td>Harvest Crafting</td>
+                                    <td>Targeted color changes</td>
+                                    <td>Reliant on finding specific crafts, less reliable</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="socket-math">
+                <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" aria-labelledby="socket-title socket-desc">
+                    <title id="socket-title">Socket Color Probability Distribution - PoE Patch 3.24</title>
+                    <desc id="socket-desc">SVG visualization showing how attribute requirements affect socket coloring probabilities.</desc>
+                    
+                    <!-- Item backdrop -->
+                    <rect x="50" y="50" width="500" height="200" fill="#333" rx="10" ry="10" />
+                    
+                    <!-- Item attribute visualization -->
+                    <rect x="75" y="80" width="200" height="20" fill="#ff5a5a" rx="5" ry="5" />
+                    <text x="175" y="95" text-anchor="middle" fill="white" font-size="14">STR: 150</text>
+                    
+                    <rect x="75" y="110" width="100" height="20" fill="#5aff5a" rx="5" ry="5" />
+                    <text x="125" y="125" text-anchor="middle" fill="black" font-size="14">DEX: 75</text>
+                    
+                    <rect x="75" y="140" width="50" height="20" fill="#5a5aff" rx="5" ry="5" />
+                    <text x="100" y="155" text-anchor="middle" fill="white" font-size="14">INT: 30</text>
+                    
+                    <!-- Sockets visualization -->
+                    <circle cx="350" cy="100" r="20" fill="#ff5a5a" stroke="#444" stroke-width="2" />
+                    <circle cx="400" cy="100" r="20" fill="#ff5a5a" stroke="#444" stroke-width="2" />
+                    <circle cx="450" cy="100" r="20" fill="#5aff5a" stroke="#444" stroke-width="2" />
+                    <circle cx="350" cy="150" r="20" fill="#5a5aff" stroke="#444" stroke-width="2" />
+                    <circle cx="400" cy="150" r="20" fill="#ffffff" stroke="#444" stroke-width="2" />
+                    <circle cx="450" cy="150" r="20" fill="#5a5aff" stroke="#444" stroke-width="2" />
+                    
+                    <!-- Connecting lines -->
+                    <path d="M 350 120 L 350 130" stroke="#666" stroke-width="2" />
+                    <path d="M 400 120 L 400 130" stroke="#666" stroke-width="2" />
+                    <path d="M 450 120 L 450 130" stroke="#666" stroke-width="2" />
+                    
+                    <!-- Probability labels -->
+                    <text x="75" y="190" fill="white" font-size="14">Socket Probabilities:</text>
+                    <text x="75" y="210" fill="#ff5a5a" font-size="12">Red: 64.7%</text>
+                    <text x="175" y="210" fill="#5aff5a" font-size="12">Green: 25.5%</text>
+                    <text x="275" y="210" fill="#5a5aff" font-size="12">Blue: 9.8%</text>
+                    
+                    <!-- Item name -->
+                    <text x="300" y="240" fill="#ff9c00" font-size="16" text-anchor="middle">6-Link Astral Plate Example</text>
+                </svg>
+            </div>
+
+            <div class="update-notice">
+                <p>Updated for Path of Exile Patch 3.24. Mechanics are based on the latest game data. Always verify in-game for critical crafting decisions.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Vorici Calc. All game content and assets are trademarks of Grinding Gear Games.</p>
+            <p>Site data last updated for Patch 3.24: May 17, 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
