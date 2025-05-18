@@ -1,6 +1,19 @@
 {
   "version": 2,
-  "buildCommand": null,
-  "outputDirectory": ".",
-  "cleanUrls": true
+  "builds": [
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.+(js|css|png|jpg|jpeg|gif|ico|json|xml|svg|woff|woff2|ttf|eot)",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
